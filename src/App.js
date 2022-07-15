@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import PostDetails from "./pages/PostDetails";
+import Header from "./component/Header";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getPosts } from "./utils/api";
+import { getAllPosts } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
+  const updatePosts = async () => {
+    const posts = await getPosts();
+    dispatch(getAllPosts(posts));
+  };
+
+  useEffect(() => {
+    updatePosts();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home className="position-absloty" />} />
+        <Route path="/postDetails/:id" element={<PostDetails />} />
+      </Routes>
     </div>
   );
 }

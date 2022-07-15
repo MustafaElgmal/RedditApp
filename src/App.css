@@ -1,38 +1,76 @@
-.App {
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.logo {
+  width: 150px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  
+}
+.search{
+  width: 20px;
+  height: 14px;
+}
+
+.div{
+  height:3rem;
+}
+.img{
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+
+.card-body{
+  margin-top: 4px;
+}
+.card-head{
+  margin-right: 10%;
+}
+.title{
+  margin-left:-10% ;
+}
+
+.head{
+  margin-left: -20%;
+}
+.span{
+  margin-right: 50px;
+}
+.arrow{
+  margin-right: -30px;
+  padding: 115px;
+  text-decoration: none;
+  color: black;
+}
+
+.svg{
+  width: 40px;
+  height: 40px;
+}
+
+
+.main {
+  width: 50%;
+  margin: 50px auto;
+}
+/* Bootstrap 4 text input with search icon */
+.has-search .form-control {
+  padding-left: 2rem;
+}
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
   pointer-events: none;
+  color: #aaa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

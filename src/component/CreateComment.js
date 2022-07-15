@@ -1,0 +1,76 @@
+import React from "react";
+import Modal from "react-bootstrap/Modal";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Button, Form } from "react-bootstrap";
+import { addComment, getPosts } from "../utils/api";
+import { useDispatch } from "react-redux";
+import { getAllPosts } from "../redux/actions";
+
+const CreateComment = ({ show, onHide, id }) => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      body: "",
+    },
+    validationSchema: Yup.object({
+      body: Yup.string()
+        .max(500, "Max is 500 characters !")
+        .required("Body is required !"),
+    }),
+    onSubmit: async (values) => {
+      const comm = { ...values, userId: 5 };
+      await addComment(id, comm);
+      onHide();
+      formik.resetForm();
+      const posts = await getPosts();
+      dispatch(getAllPosts(posts));
+    },
+  });
+  return (
+    <Modal
+      show={show}
+      onHide={() => {
+        onHide();
+        formik.resetForm();
+      }}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Add Comment
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Body:</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Body"
+              name="body"
+              value={formik.values.body}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            <Form.Text className="text-muted">
+              {formik.errors.body && formik.touched.body
+                ? formik.errors.body
+                : null}
+            </Form.Text>
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={formik.handleSubmit} className="btn btn-danger">
+          Add
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default CreateComment;
