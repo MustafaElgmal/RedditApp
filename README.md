@@ -11,20 +11,19 @@ Reddit clone built with Reactjs, and Nodejs.
 
 :one: Nav bar
 
-![nav](https://user-images.githubusercontent.com/16297114/170083596-9d8a2628-c8b2-4d72-b7de-a9c4294d7631.png)
+![nav](https://review2020.s3.amazonaws.com/nav1.PNG)
 
 :two: Post Card
 
-<img src="https://user-images.githubusercontent.com/16297114/170083842-81119a59-7a3d-41e2-b4fd-69eb729a1881.png" width="400px" alt="card"/>
+<img src="https://review2020.s3.amazonaws.com/post.PNG" width="400px" alt="card"/>
 
-:three: Post Details Page
+:two: Post Details Page
 
-![ind-post](https://user-images.githubusercontent.com/16297114/170506676-ffe2cb04-fc6e-4bac-8ae6-89804e485b8d.png)
-![ind-post2](https://user-images.githubusercontent.com/16297114/170506696-4fa5dd38-a3b8-4789-9179-48e778f380d5.png)
+![ind-post](https://review2020.s3.amazonaws.com/postDetails.PNG)
 
 ### Mobile:
 
-<img src="https://user-images.githubusercontent.com/16297114/170084140-02c23ac7-e526-485a-98fa-de78dcf4fd92.png" width="300px" alt="mobile-view"/>
+<img src="https://review2020.s3.amazonaws.com/post.PNG" width="300px" alt="mobile-view"/>
 
 
 
