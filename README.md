@@ -1,9 +1,7 @@
 # reddit clone    <img src="https://user-images.githubusercontent.com/16297114/170081186-ad80a5cd-85e5-459e-b3e3-b33786752ff7.jpg" width="150px" align="right" alt="logo"/>
 ---
  
-Reddit clone built with Reactjs, and Nodejs.
-
-![reddit](https://user-images.githubusercontent.com/16297114/170016591-344557f4-e72a-4dae-a7ae-a505aa620b6e.jpg)
+Reddit clone built with Reactjs
 
 ## UI in depth:
 
@@ -15,7 +13,7 @@ Reddit clone built with Reactjs, and Nodejs.
 
 :two: Post Card
 
-<img src="https://review2020.s3.amazonaws.com/post.PNG" width="400px" alt="card"/>
+<img src="https://review2020.s3.amazonaws.com/post2.PNG" width="400px" alt="card"/>
 
 :two: Post Details Page
 
