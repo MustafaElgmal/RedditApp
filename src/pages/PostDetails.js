@@ -71,7 +71,7 @@ const PostDetails = () => {
     <section className="mt-5 min-vh-100" style={theme}>
       <Container>
         <div className="div"></div>
-        <Card style={{...cardTheme}} className="posts ">
+        <Card style={{...cardTheme}} className="postDe ">
           <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
             <Image
               src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
@@ -111,7 +111,7 @@ const PostDetails = () => {
             />
           </Card.Body>
         </Card>
-        <Card style={{...cardTheme}} className="mt-3 posts">
+        <Card style={{...cardTheme}} className="mt-3 postDe">
           <div className="d-flex justify-content-start ms-3 mt-3">
             <Card.Title>Comments</Card.Title>
           </div>

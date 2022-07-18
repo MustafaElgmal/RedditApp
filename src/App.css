@@ -91,6 +91,10 @@
     width: 90% !important;
     margin: auto !important;
   }
+  .postDe{
+    width: 90% !important;
+    margin: auto !important;
+  }
 
   .img{
     width: 3rem;
@@ -102,7 +106,10 @@
   }
  
 }
+.postDe{
+  width: 55rem;
 
+}
 .posts{
   width: 40rem;
 }
