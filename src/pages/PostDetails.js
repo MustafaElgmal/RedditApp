@@ -56,8 +56,9 @@ const PostDetails = () => {
     setPost(postFind);
   }, [posts]);
 
+
+
   if (posts?.length === 0) {
-    console.log("jkjk")
     return (
       <section className="min-vh-100" style={theme}>
         <h1>Loading...</h1>

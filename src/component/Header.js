@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Container, Image, Button } from "react-bootstrap";
 import { ReactComponent as Logo } from "../assets/Reddit-Logo.wine.svg";
 import CreatePost from "./CreatePost";
@@ -22,7 +22,7 @@ const Header = () => {
     useContext(ThemeContext);
 
   const dispatch = useDispatch();
-  const searchFilter = async (value) => {
+  const searchFilter = async (value='') => {
     const posts = await getPosts();
     if (location.pathname === "/") {
       let Filter = posts.filter((post) =>
@@ -36,6 +36,11 @@ const Header = () => {
       dispatch(getAllPostComments(Filter))
     }
   };
+
+  useEffect(()=>{
+    searchFilter()
+
+  })
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Navbar
