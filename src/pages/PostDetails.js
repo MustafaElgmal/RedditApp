@@ -10,12 +10,15 @@ import { ReactComponent as Like } from "../assets/like-svgrepo-com.svg";
 import { ReactComponent as Dislike } from "../assets/dislike-svgrepo-com.svg";
 import { ReactComponent as Comment } from "../assets/comment-bubble-with-three-squares-svgrepo-com.svg";
 import { addVote, getPosts,addComment } from "../utils/api";
-import { getAllPosts } from "../redux/actions";
+import { getAllPosts } from "../redux/actions/post.actions";
 import CreateComment from "../component/CreateComment";
 import Commentt from "../component/Commentt";
+import { useContext } from "react";
+import { ThemeContext } from "../component/ThemsContext";
 const PostDetails = () => {
   const [modalShow, setModalShow] = React.useState(false);
-  const posts = useSelector((state) => state);
+  const {theme,cardTheme,buttonTheme}=useContext(ThemeContext)
+  const posts = useSelector((state) => state.post);
   const { id: postId } = useParams();
   const [post, setPost] = useState({});
   const dispatch = useDispatch();
@@ -57,16 +60,17 @@ const PostDetails = () => {
     );
   }
 
+
   const time = post.createdAt;
   const month = moment(time).format("MMMM");
   const day = moment(time).format("D");
   const hour = moment(time).format("LT");
 
   return (
-    <section className="mt-5 min-vh-100" style={{ backgroundColor: "#f3f4f6" }}>
+    <section className="mt-5 min-vh-100" style={theme}>
       <Container>
         <div className="div"></div>
-        <Card style={{ width: "60rem" }} className="ms-4 ">
+        <Card style={{...cardTheme, width: "60rem" }} className="ms-4 ">
           <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
             <Image
               src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
@@ -106,7 +110,7 @@ const PostDetails = () => {
             />
           </Card.Body>
         </Card>
-        <Card style={{ width: "60rem" }} className="ms-4 mt-3">
+        <Card style={{...cardTheme, width: "60rem" }} className="ms-4 mt-3">
           <div className="d-flex justify-content-start ms-3 mt-3">
             <Card.Title>Comments</Card.Title>
           </div>
@@ -130,7 +134,7 @@ const PostDetails = () => {
                   controlId="exampleForm.ControlTextarea1"
                 >
                   <Form.Control
-                    style={{ width: "55rem", height: "4rem" }}
+                    style={{ ...theme,width: "55rem", height: "4rem" }}
                     as="textarea"
                     placeholder="Add comment"
                     name="body"
@@ -148,7 +152,7 @@ const PostDetails = () => {
                   <div></div>
                   <Button
                     onClick={formik.handleSubmit}
-                    className="btn btn-danger"
+                    className={buttonTheme}
                   >
                     Comment
                   </Button>

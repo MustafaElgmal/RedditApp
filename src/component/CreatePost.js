@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import { addPost, getPosts } from "../utils/api";
 import { useDispatch } from "react-redux";
-import { getAllPosts } from "../redux/actions";
+import { getAllPosts } from "../redux/actions/post.actions";
 const CreatePost = ({ show, onHide }) => {
   const dispatch = useDispatch();
   const formik = useFormik({

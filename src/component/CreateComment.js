@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
 import { addComment, getPosts } from "../utils/api";
 import { useDispatch } from "react-redux";
-import { getAllPosts } from "../redux/actions";
+import { getAllPosts } from "../redux/actions/post.actions";
 
 const CreateComment = ({ show, onHide, id }) => {
   const dispatch = useDispatch();

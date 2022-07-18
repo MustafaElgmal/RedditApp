@@ -8,12 +8,14 @@ import { ReactComponent as Comment } from "../assets/comment-bubble-with-three-s
 import { ReactComponent as Arrow } from "../assets/right-arrow-next-svgrepo-com.svg";
 import { addVote, getPosts } from "../utils/api";
 import { useDispatch } from "react-redux";
-import { getAllPosts } from "../redux/actions";
+import { getAllPosts } from "../redux/actions/post.actions";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-
+import { useContext } from "react";
+import { ThemeContext } from "./ThemsContext";
 const Post = ({ post }) => {
+  const {cardTheme}=useContext(ThemeContext)
   const month = moment(post.createdAt).format("MMMM");
   const day = moment(post.createdAt).format("D");
   const hour = moment(post.createdAt).format("LT");
@@ -29,7 +31,7 @@ const Post = ({ post }) => {
 
   return (
     <Container>
-      <Card style={{ width: "40rem" }} className="ms-4 mt-3">
+      <Card style={{...cardTheme, width: "40rem" }} className="ms-4 mt-3">
         <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
           <Image
             src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
