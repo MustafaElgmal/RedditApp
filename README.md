@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# reddit clone    <img src="https://user-images.githubusercontent.com/16297114/170081186-ad80a5cd-85e5-459e-b3e3-b33786752ff7.jpg" width="150px" align="right" alt="logo"/>
+---
+ 
+Reddit clone built with Reactjs, and Nodejs.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![reddit](https://user-images.githubusercontent.com/16297114/170016591-344557f4-e72a-4dae-a7ae-a505aa620b6e.jpg)
 
-## Available Scripts
+## UI in depth:
 
-In the project directory, you can run:
+### Desktop:
 
-### `npm start`
+:one: Nav bar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![nav](https://user-images.githubusercontent.com/16297114/170083596-9d8a2628-c8b2-4d72-b7de-a9c4294d7631.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+:two: Post Card
 
-### `npm test`
+<img src="https://user-images.githubusercontent.com/16297114/170083842-81119a59-7a3d-41e2-b4fd-69eb729a1881.png" width="400px" alt="card"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+:three: Post Details Page
 
-### `npm run build`
+![ind-post](https://user-images.githubusercontent.com/16297114/170506676-ffe2cb04-fc6e-4bac-8ae6-89804e485b8d.png)
+![ind-post2](https://user-images.githubusercontent.com/16297114/170506696-4fa5dd38-a3b8-4789-9179-48e778f380d5.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Mobile:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://user-images.githubusercontent.com/16297114/170084140-02c23ac7-e526-485a-98fa-de78dcf4fd92.png" width="300px" alt="mobile-view"/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+------
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Features:
+- :memo: Write new post.
+- :wastebasket: Remove post.
+- :pencil2: Comment on existing post.
+- :wastebasket: Remove comment.
+- :arrow_up: :arrow_down: Upvote, or downvote.
+- 💾 Save posts, comments, and votes to database.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-----
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies used:
+- [React JS](https://reactjs.org/)
+- [React Redux](https://react-redux.js.org/)
+- [Redux toolkit](https://redux-toolkit.js.org/)
+- [Material UI](https://mui.com/)
+- [Formik](https://formik.org/)
+- [Node js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [Postgresql](https://www.postgresql.org/)
+- [Supabase.](https://supabase.com/)
 
-### Code Splitting
+-----
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Time required to build: 
+~ 1 week
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-----
+## Experience required:
+- 👶 Beginner ✅
+- 🧒🏻 Intermediate 
+- 🦸‍♂️ Advanced

@@ -15,10 +15,13 @@ import CreateComment from "../component/CreateComment";
 import Commentt from "../component/Commentt";
 import { useContext } from "react";
 import { ThemeContext } from "../component/ThemsContext";
+import { getAllPostComments } from "../redux/actions/comment.actions";
 const PostDetails = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const {theme,cardTheme,buttonTheme}=useContext(ThemeContext)
   const posts = useSelector((state) => state.post);
+  const comms=useSelector((state)=>state.comments)
+  console.log(comms)
   const { id: postId } = useParams();
   const [post, setPost] = useState({});
   const dispatch = useDispatch();
@@ -46,6 +49,7 @@ const PostDetails = () => {
     },
   });
 
+ 
   useEffect(() => {
     const postFind =
       posts?.length > 0 && posts.find((post) => post.id === +postId);
@@ -60,6 +64,8 @@ const PostDetails = () => {
       </section>
     );
   }
+
+
 
 
   const time = post.createdAt;
@@ -120,7 +126,7 @@ const PostDetails = () => {
           <Card.Body>
             <div>
               <div>
-                {post?.comments?.map((comment) => (
+                {comms.map((comment) => (
                   <Commentt
                     key={comment.id}
                     comment={comment}

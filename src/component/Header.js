@@ -9,6 +9,7 @@ import { getPosts } from "../utils/api";
 import { logout } from "../redux/actions/user.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
+import {getAllPostComments} from '../redux/actions/comment.actions'
 
 const Header = () => {
   const user = useSelector((state) => state.user);
@@ -31,6 +32,8 @@ const Header = () => {
     } else {
       const id = location.pathname.split("/")[2];
       const postfind = posts.find((post) => post.id === +id);
+      const Filter=postfind.comments.filter((comm)=>comm.body.toLowerCase().includes(value))
+      dispatch(getAllPostComments(Filter))
     }
   };
   const [modalShow, setModalShow] = React.useState(false);
