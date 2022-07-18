@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 .logo {
-  width: 150px;
-  height: 50px;
+  width: 9rem;
+  height: 9rem;
   margin: 0;
   padding: 0;
   
@@ -19,11 +19,11 @@
   height:3rem;
 }
 .img{
-  width: 50px;
-  height: 50px;
-  margin: 20px;
-}
+  width: 3rem;
+  height: 3rem;
+  margin-right: 3rem;
 
+}
 .card-body{
   margin-top: 4px;
 }
@@ -33,7 +33,6 @@
 .title{
   margin-left:-10% ;
 }
-
 .head{
   margin-left: -20%;
 }
@@ -46,13 +45,10 @@
   text-decoration: none;
   color: black;
 }
-
 .svg{
   width: 40px;
   height: 40px;
 }
-
-
 .main {
   width: 50%;
   margin: 50px auto;
@@ -71,6 +67,47 @@
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+@media screen and (max-width:1200px){
+  .media{
+    flex-direction: column;
+    border: solid 1px red;
+    position: absolute;
+    top: 50px;
+    right: -6px;
+    width: 150px;
+
+  }
+  .media button{
+    width: 150px;
+  }
+  .show{
+    display: flex;
+  }
+  .notshow{
+    display: none;
+  }
+  .posts{
+    width: 90% !important;
+    margin: auto !important;
+  }
+
+  .img{
+    width: 3rem;
+    height: 3rem;
+    margin-left: 10px;
+  }
+  .bt{
+    margin-left: 0rem !important;
+  }
+ 
+}
+
+.posts{
+  width: 40rem;
+}
+.bt{
+  margin-left:0.5rem ;
 }
 
 

@@ -7,7 +7,10 @@ import Form from "react-bootstrap/Form";
 import { addPost, getPosts } from "../utils/api";
 import { useDispatch } from "react-redux";
 import { getAllPosts } from "../redux/actions/post.actions";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemsContext";
 const CreatePost = ({ show, onHide }) => {
+  const {theme,buttonTheme}=useContext(ThemeContext)
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -35,13 +38,15 @@ const CreatePost = ({ show, onHide }) => {
     <Modal
       show={show}
       onHide={() => {
-        onHide();
+        formik.resetForm()
+        onHide()
       }}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+    <div style={theme}>
+    <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Add New Post
         </Modal.Title>
@@ -57,6 +62,7 @@ const CreatePost = ({ show, onHide }) => {
               value={formik.values.title}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
+              style={theme}
             />
             <Form.Text className="text-muted">
               {formik.errors.title && formik.touched.title
@@ -74,6 +80,7 @@ const CreatePost = ({ show, onHide }) => {
               value={formik.values.body}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
+              style={theme}
             />
             <Form.Text className="text-muted">
               {formik.errors.body && formik.touched.body
@@ -84,10 +91,12 @@ const CreatePost = ({ show, onHide }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={formik.handleSubmit} className="btn btn-danger">
+        <Button onClick={formik.handleSubmit} className={buttonTheme}>
           Post
         </Button>
       </Modal.Footer>
+    </div>
+      
     </Modal>
   );
 };

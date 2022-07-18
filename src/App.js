@@ -22,17 +22,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div>
       <ThemeSwitcher>
         <Header />
-        {user.isLoggedIn || JSON.parse(localStorage.getItem("isLoggedIn")) ? (
-          <Routes>
-            <Route path="/" element={<Home className="position-absloty" />} />
-            <Route path="/postDetails/:id" element={<PostDetails />} />
-          </Routes>
-        ) : (
-          <Login />
-        )}
+          {user.isLoggedIn || JSON.parse(localStorage.getItem("isLoggedIn")) ? (
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/postDetails/:id" element={<PostDetails />} />
+              </Routes>
+          ) : (
+            <Login />
+          )}
+        
       </ThemeSwitcher>
     </div>
   );

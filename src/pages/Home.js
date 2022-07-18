@@ -10,7 +10,7 @@ const Home = () => {
   
   if (posts?.length === 0) {
     return (
-      <main>
+      <main className="min-vh-100"  style={theme}>
         <h1>Loading...</h1>
       </main>
     );

@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Form, Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { login } from "../redux/actions/user.actions";
 import { useDispatch} from "react-redux";
+import { useContext } from "react";
+import { ThemeContext } from "../component/ThemsContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const {theme,buttonTheme}=useContext(ThemeContext)
     const dispatch=useDispatch()
   const formik = useFormik({
     initialValues: {
@@ -26,7 +30,7 @@ const Login = () => {
   return (
     <div
       className="d-flex justify-content-center min-vh-100"
-      style={{ backgroundColor: "#f3f4f6" }}
+      style={theme}
     >
       <Form style={{ width: "20rem", marginTop: "15rem" }}>
         <Form.Group controlId="formBasicEmail">
@@ -38,6 +42,7 @@ const Login = () => {
             value={formik.values.email}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
+            style={theme}
           />
           <Form.Text className="text-muted">
             {formik.errors.email && formik.touched.email
@@ -55,6 +60,7 @@ const Login = () => {
             value={formik.values.password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
+            style={theme}
           />
         </Form.Group>
         <Form.Text className="text-muted">
@@ -62,9 +68,9 @@ const Login = () => {
             ? formik.errors.password
             : null}
         </Form.Text>
-        <Button  onClick={formik.handleSubmit} className="btn btn-danger m-2">
-          Login
-        </Button>
+        <Link to="/" className={`${buttonTheme} m-2 ms-0`} onClick={formik.handleSubmit}>
+        Login
+        </Link>
       </Form>
     </div>
   );

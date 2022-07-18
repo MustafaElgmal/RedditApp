@@ -31,7 +31,7 @@ const Post = ({ post }) => {
 
   return (
     <Container>
-      <Card style={{...cardTheme, width: "40rem" }} className="ms-4 mt-3">
+      <Card style={{...cardTheme}} className="ms-4 mt-3 posts">
         <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
           <Image
             src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
@@ -64,7 +64,7 @@ const Post = ({ post }) => {
               </span>
             </div>
             <div>
-              <Link to={`/postDetails/${post.id}`}>
+              <Link to={`/postDetails/${post.id}`} style={{color:'black'}}>
                 {" "}
                 Open post
                 <Arrow className="search" />

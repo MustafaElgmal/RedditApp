@@ -53,8 +53,9 @@ const PostDetails = () => {
   }, [posts]);
 
   if (posts?.length === 0) {
+    console.log("jkjk")
     return (
-      <section>
+      <section className="min-vh-100" style={theme}>
         <h1>Loading...</h1>
       </section>
     );
@@ -70,7 +71,7 @@ const PostDetails = () => {
     <section className="mt-5 min-vh-100" style={theme}>
       <Container>
         <div className="div"></div>
-        <Card style={{...cardTheme, width: "60rem" }} className="ms-4 ">
+        <Card style={{...cardTheme}} className="posts ">
           <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
             <Image
               src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
@@ -110,7 +111,7 @@ const PostDetails = () => {
             />
           </Card.Body>
         </Card>
-        <Card style={{...cardTheme, width: "60rem" }} className="ms-4 mt-3">
+        <Card style={{...cardTheme}} className="mt-3 posts">
           <div className="d-flex justify-content-start ms-3 mt-3">
             <Card.Title>Comments</Card.Title>
           </div>
@@ -134,7 +135,7 @@ const PostDetails = () => {
                   controlId="exampleForm.ControlTextarea1"
                 >
                   <Form.Control
-                    style={{ ...theme,width: "55rem", height: "4rem" }}
+                    style={{ ...theme, height: "4rem" }}
                     as="textarea"
                     placeholder="Add comment"
                     name="body"
