@@ -31,9 +31,7 @@ Reddit clone built with Reactjs
 
 ## Features:
 - :memo: Write new post.
-- :wastebasket: Remove post.
 - :pencil2: Comment on existing post.
-- :wastebasket: Remove comment.
 - :arrow_up: :arrow_down: Upvote, or downvote.
 - 💾 Save posts, comments, and votes to database.
 
@@ -43,8 +41,7 @@ Reddit clone built with Reactjs
 ## Technologies used:
 - [React JS](https://reactjs.org/)
 - [React Redux](https://react-redux.js.org/)
-- [Redux toolkit](https://redux-toolkit.js.org/)
-- [Material UI](https://mui.com/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
 - [Formik](https://formik.org/)
 - [Node js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
