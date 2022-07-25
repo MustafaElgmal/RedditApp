@@ -54,7 +54,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {user.isLoggedIn || JSON.parse(localStorage.getItem("isLoggedIn")) ? (
+        {user.isLoggedIn? (
           <div className="main">
             <div className="form-group has-search">
               <span className="fa fa-search form-control-feedback"></span>
@@ -73,7 +73,7 @@ const Header = () => {
           </div>
         ) : null}
 
-        {user.isLoggedIn || JSON.parse(localStorage.getItem("isLoggedIn")) ? (
+        {user.isLoggedIn ? (
           <div className="d-flex position-relative">
             <div onClick={displayToggle}>
               <Image
@@ -96,7 +96,7 @@ const Header = () => {
                 className={`${buttonTheme} bt`}
                 onClick={() => {
                   dispatch(logout());
-                  localStorage.removeItem("isLoggedIn");
+                  localStorage.removeItem("user");
                 }}
               >
                 Logout

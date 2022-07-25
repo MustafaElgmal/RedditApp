@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
 import { addComment, getPosts } from "../utils/api";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { getAllPosts } from "../redux/actions/post.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
@@ -12,6 +12,7 @@ import { ThemeContext } from "./ThemsContext";
 const CreateComment = ({ show, onHide, id }) => {
   const {theme,buttonTheme}=useContext(ThemeContext)
   const dispatch = useDispatch();
+  const user=useSelector((state)=>state.user)
   const formik = useFormik({
     initialValues: {
       body: "",
@@ -22,7 +23,7 @@ const CreateComment = ({ show, onHide, id }) => {
         .required("Body is required !"),
     }),
     onSubmit: async (values) => {
-      const comm = { ...values, userId: 5 };
+      const comm = { ...values, userId: user.user.id };
       await addComment(id, comm);
       onHide();
       formik.resetForm();

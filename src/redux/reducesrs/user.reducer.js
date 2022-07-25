@@ -1,4 +1,7 @@
- const reducer=(state={userName:"",isLoggedIn:false},action)=>{
+
+const initialState = JSON.parse(localStorage.getItem('user'))|| {user: {}, isLoggedIn: false}
+
+ const reducer=(state=initialState,action)=>{
     switch(action.type){
         case'LOGIN':
         return action.payload

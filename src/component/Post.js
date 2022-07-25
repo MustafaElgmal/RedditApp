@@ -7,7 +7,7 @@ import { ReactComponent as Dislike } from "../assets/dislike-svgrepo-com.svg";
 import { ReactComponent as Comment } from "../assets/comment-bubble-with-three-squares-svgrepo-com.svg";
 import { ReactComponent as Arrow } from "../assets/right-arrow-next-svgrepo-com.svg";
 import { addVote, getPosts } from "../utils/api";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { getAllPosts } from "../redux/actions/post.actions";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
@@ -19,11 +19,13 @@ const Post = ({ post }) => {
   const month = moment(post.createdAt).format("MMMM");
   const day = moment(post.createdAt).format("D");
   const hour = moment(post.createdAt).format("LT");
+  const user=useSelector((state)=>state.user)
+  console.log(user)
 
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = React.useState(false);
   const vote = async (num) => {
-    const Vote = { userId: 5, userVote: num };
+    const Vote = { userId:user.user.id, userVote: num };
     await addVote(post.id, Vote);
     const posts = await getPosts();
     dispatch(getAllPosts(posts));
@@ -39,7 +41,7 @@ const Post = ({ post }) => {
             style={{ width: "50px", height: "50px", borderRadius: "50%" }}
           />
           <div>
-            <h4>Mostafa Elgmal</h4>
+            <h4>{post.user.firstName+' '+post.user.lastName}</h4>
             <p className="text-muted">{`${month} ${day} at ${hour}`}</p>
           </div>
         </div>
@@ -50,10 +52,10 @@ const Post = ({ post }) => {
           <div className="d-flex justify-content-between">
             <div>
               <span onClick={(e) => vote(1)}>
-                <Like className="search" /> {post.upVotesTotal}
+                <Like className="search" /> {post.upVoteTotal}
               </span>
               <span onClick={(e) => vote(-1)}>
-                <Dislike className="search" /> {post.downVotesTotal}
+                <Dislike className="search" /> {post.downVoteTotal}
               </span>
               <span
                 onClick={(e) => {

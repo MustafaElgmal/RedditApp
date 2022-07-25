@@ -21,12 +21,13 @@ const PostDetails = () => {
   const {theme,cardTheme,buttonTheme}=useContext(ThemeContext)
   const posts = useSelector((state) => state.post);
   const comms=useSelector((state)=>state.comments)
+  const user=useSelector((state)=>state.user)
   console.log(comms)
   const { id: postId } = useParams();
   const [post, setPost] = useState({});
   const dispatch = useDispatch();
   const vote = async (num) => {
-    const Vote = { userId: 5, userVote: num };
+    const Vote = { userId: user.user.id, userVote: num };
     await addVote(post.id, Vote);
     const posts = await getPosts();
     dispatch(getAllPosts(posts));
@@ -41,7 +42,7 @@ const PostDetails = () => {
         .required("Body is required !"),
     }),
     onSubmit: async (values) => {
-      const comm = { ...values, userId: 5 };
+      const comm = { ...values, userId: user.user.id };
       await addComment(postId, comm);
       formik.resetForm();
       const posts = await getPosts();
@@ -97,10 +98,10 @@ const PostDetails = () => {
             <div className="d-flex justify-content-between">
               <div>
                 <span onClick={(e) => vote(1)}>
-                  <Like className="search" /> {post.upVotesTotal}
+                  <Like className="search" /> {post.upVoteTotal}
                 </span>
                 <span onClick={(e) => vote(-1)}>
-                  <Dislike className="search" /> {post.downVotesTotal}
+                  <Dislike className="search" /> {post.downVoteTotal}
                 </span>
                 <span
                   onClick={(e) => {
@@ -123,7 +124,6 @@ const PostDetails = () => {
             <Card.Title>Comments</Card.Title>
           </div>
           <hr />
-
           <Card.Body>
             <div>
               <div>
@@ -171,9 +171,6 @@ const PostDetails = () => {
         </Card>
       </Container>
     </section>
-    //   <Container>
-    //   <div className="div"></div>
-    
   );
 };
 

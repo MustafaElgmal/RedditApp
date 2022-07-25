@@ -9,6 +9,8 @@ import { getPosts } from "./utils/api";
 import { getAllPosts } from "./redux/actions/post.actions";
 import Login from "./pages/Login";
 import { ThemeSwitcher } from "./component/ThemsContext";
+import SignUp from "./pages/SignUp";
+import Protected from "./component/Protected";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,14 +27,14 @@ function App() {
     <div>
       <ThemeSwitcher>
         <Header />
-          {user.isLoggedIn || JSON.parse(localStorage.getItem("isLoggedIn")) ? (
+          
             <Routes>
-              <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Protected><Home/></Protected>}/>
+              <Route path='/signUp' element={<SignUp />}/>
               <Route path="/postDetails/:id" element={<PostDetails />} />
-              </Routes>
-          ) : (
-            <Login />
-          )}
+              <Route path='/login' element={<Login/>}/>
+            </Routes>
+         
         
       </ThemeSwitcher>
     </div>

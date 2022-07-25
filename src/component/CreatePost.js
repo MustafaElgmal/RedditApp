@@ -5,12 +5,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import { addPost, getPosts } from "../utils/api";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { getAllPosts } from "../redux/actions/post.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
+
 const CreatePost = ({ show, onHide }) => {
   const {theme,buttonTheme}=useContext(ThemeContext)
+  const user=useSelector((state)=>state.user)
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -26,7 +28,7 @@ const CreatePost = ({ show, onHide }) => {
         .required("Body is required !"),
     }),
     onSubmit: async (values) => {
-      const post = { ...values, userId: Math.floor(Math.random() * 10) + 1 };
+      const post = { ...values, userId:user.user.id };
       await addPost(post);
       formik.resetForm();
       onHide();
