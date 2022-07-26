@@ -9,20 +9,20 @@ import { getPosts } from "../utils/api";
 import { logout } from "../redux/actions/user.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
-import {getAllPostComments} from '../redux/actions/comment.actions'
+import { getAllPostComments } from "../redux/actions/comment.actions";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
-  const [bool,setBool]=useState(false)
-  const displayToggle=()=>{
-   setBool(!bool)
-  }
+  const [bool, setBool] = useState(false);
+  const displayToggle = () => {
+    setBool(!bool);
+  };
   const location = useLocation();
   const { theme, buttonTheme, navTheme, themeToggle, currentTheme } =
     useContext(ThemeContext);
 
   const dispatch = useDispatch();
-  const searchFilter = async (value='') => {
+  const searchFilter = async (value = "") => {
     const posts = await getPosts();
     if (location.pathname === "/") {
       let Filter = posts.filter((post) =>
@@ -32,15 +32,16 @@ const Header = () => {
     } else {
       const id = location.pathname.split("/")[2];
       const postfind = posts.find((post) => post.id === +id);
-      const Filter=postfind.comments.filter((comm)=>comm.body.toLowerCase().includes(value))
-      dispatch(getAllPostComments(Filter))
+      const Filter = postfind.comments.filter((comm) =>
+        comm.body.toLowerCase().includes(value)
+      );
+      dispatch(getAllPostComments(Filter));
     }
   };
 
-  useEffect(()=>{
-    searchFilter()
-
-  })
+  useEffect(() => {
+    searchFilter();
+  });
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Navbar
@@ -54,7 +55,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {user.isLoggedIn? (
+        {user.isLoggedIn ? (
           <div className="main">
             <div className="form-group has-search">
               <span className="fa fa-search form-control-feedback"></span>
@@ -81,10 +82,9 @@ const Header = () => {
                 alt="..."
                 roundedCircle
                 className="img"
-                
               />
             </div>
-            <div className={bool?"media show":"media notshow"}>
+            <div className={bool ? "media show" : "media notshow"}>
               <Button
                 className={buttonTheme}
                 onClick={() => setModalShow(true)}
@@ -101,10 +101,9 @@ const Header = () => {
               >
                 Logout
               </Link>
-              <Button
-                className={`${buttonTheme} bt`}
-                onClick={themeToggle}
-              >{`${currentTheme === "light" ? "Dark" : "Light"}`}</Button>
+              <Button className={`${buttonTheme} bt`} onClick={themeToggle}>{`${
+                currentTheme === "light" ? "Dark" : "Light"
+              }`}</Button>
             </div>
           </div>
         ) : (
