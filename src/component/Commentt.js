@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const Commentt = ({ comment }) => {
   let time = moment(comment.createdAt).fromNow();
-  time = time.split(" ")[0];
+  console.log(time)
   const user = useSelector((state) => state.user);
   const fullName = captilaze(`${user.user.firstName} ${user.user.lastName}`);
   return (
@@ -23,7 +23,7 @@ const Commentt = ({ comment }) => {
           <Card.Text>{comment.body}</Card.Text>
           <div className="d-flex justify-content-between">
             <div>
-              <Card.Text className="text-muted">{`${time}d ago`}</Card.Text>
+              <Card.Text className="text-muted">{time}</Card.Text>
             </div>
             <div></div>
           </div>

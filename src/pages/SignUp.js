@@ -6,10 +6,14 @@ import { useContext } from "react";
 import { ThemeContext } from "../component/ThemsContext";
 import { createUser } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/user.actions";
 import Layout from "../component/Layout";
+
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch=useDispatch()
   const { theme, buttonTheme, cardTheme } = useContext(ThemeContext);
   const formik = useFormik({
     initialValues: {
@@ -29,7 +33,13 @@ const SignUp = () => {
       if (res.status !== 201) {
         alert(res.response.data.error);
       } else {
-        navigate("/login");
+        dispatch(login(res.data.user));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ user: res.data.user, isLoggedIn: true })
+        );
+        formik.resetForm();
+        navigate("/");
       }
       formik.resetForm();
     },

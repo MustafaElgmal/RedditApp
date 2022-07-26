@@ -34,6 +34,7 @@ const Login = () => {
           "user",
           JSON.stringify({ user: res.data.user, isLoggedIn: true })
         );
+        formik.resetForm();
         navigate("/");
       }
       formik.resetForm();
