@@ -6,30 +6,20 @@ import { ReactComponent as Like } from "../assets/like-svgrepo-com.svg";
 import { ReactComponent as Dislike } from "../assets/dislike-svgrepo-com.svg";
 import { ReactComponent as Comment } from "../assets/comment-bubble-with-three-squares-svgrepo-com.svg";
 import { ReactComponent as Arrow } from "../assets/right-arrow-next-svgrepo-com.svg";
-import { addVote, getPosts } from "../utils/api";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "../redux/actions/post.actions";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
-import { captilaze } from "../utils/functions";
+import { vote } from "../utils/functions";
 const Post = ({ post }) => {
+  const user=useSelector((state)=>state.user)
   const { cardTheme } = useContext(ThemeContext);
 
-  const date=moment(post.createdAt).format("MMMM D [at] LT")
-
-  const user = useSelector((state) => state.user);
-  const fullName = captilaze(`${user.user.firstName} ${user.user.lastName}`);
+  const date = moment(post.createdAt).format("MMMM D [at] LT");
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = React.useState(false);
-  const vote = async (num) => {
-    const Vote = { userId: user.user.id, userVote: num };
-    await addVote(post.id, Vote);
-    const posts = await getPosts();
-    dispatch(getAllPosts(posts));
-  };
 
   return (
     <Container>
@@ -41,7 +31,7 @@ const Post = ({ post }) => {
             style={{ width: "50px", height: "50px", borderRadius: "50%" }}
           />
           <div>
-            <h4>{fullName}</h4>
+            <h4>{`${post.user.firstName} ${post.user.lastName}`}</h4>
             <p className="text-muted">{date}</p>
           </div>
         </div>
@@ -51,10 +41,10 @@ const Post = ({ post }) => {
           <Card.Text>{post.body}</Card.Text>
           <div className="d-flex justify-content-between">
             <div>
-              <span onClick={(e) => vote(1)}>
+              <span onClick={(e) => vote(1, post.id, dispatch,user.token)}>
                 <Like className="search" /> {post.upVotesTotal}
               </span>
-              <span onClick={(e) => vote(-1)}>
+              <span onClick={(e) => vote(-1, post.id, dispatch,user.token)}>
                 <Dislike className="search" /> {post.downVotesTotal}
               </span>
               <span

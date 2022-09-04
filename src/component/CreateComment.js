@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
 import { addComment, getPosts } from "../utils/api";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "../redux/actions/post.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
 
@@ -23,12 +22,11 @@ const CreateComment = ({ show, onHide, id }) => {
         .required("Body is required !"),
     }),
     onSubmit: async (values) => {
-      const comm = { ...values, userId: user.user.id };
-      await addComment(id, comm);
+      const comm = { ...values};
+      await addComment(id, comm,user.token);
       formik.resetForm();
       onHide();
-      const posts = await getPosts();
-      dispatch(getAllPosts(posts));
+     await getPosts(dispatch,user.token);
     },
   });
   return (

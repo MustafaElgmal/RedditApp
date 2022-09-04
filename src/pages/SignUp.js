@@ -7,13 +7,10 @@ import { ThemeContext } from "../component/ThemsContext";
 import { createUser } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/actions/user.actions";
-import Layout from "../component/Layout";
-
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const { theme, buttonTheme, cardTheme } = useContext(ThemeContext);
   const formik = useFormik({
     initialValues: {
@@ -29,24 +26,11 @@ const SignUp = () => {
       password: Yup.string().required("Please Enter your password"),
     }),
     onSubmit: async (values) => {
-      const res = await createUser(values);
-      if (res.status !== 201) {
-        alert(res.response.data.error);
-      } else {
-        dispatch(login(res.data.user));
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ user: res.data.user, isLoggedIn: true })
-        );
-        formik.resetForm();
-        navigate("/");
-      }
+      await createUser(values, dispatch, navigate);
       formik.resetForm();
     },
   });
   return (
-   
-    
     <section className="mt-5 min-vh-100" style={{ ...theme }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -75,7 +59,7 @@ const SignUp = () => {
                             onChange={formik.handleChange}
                             placeholder="FirstName"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.firstName && formik.touched.firstName
                               ? formik.errors.firstName
                               : null}
@@ -95,7 +79,7 @@ const SignUp = () => {
                             onChange={formik.handleChange}
                             placeholder="lastName"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.lastName && formik.touched.lastName
                               ? formik.errors.lastName
                               : null}
@@ -115,7 +99,7 @@ const SignUp = () => {
                             onChange={formik.handleChange}
                             placeholder="Email"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.email && formik.touched.email
                               ? formik.errors.email
                               : null}
@@ -135,25 +119,12 @@ const SignUp = () => {
                             onChange={formik.handleChange}
                             placeholder="Password"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.password && formik.touched.password
                               ? formik.errors.password
                               : null}
                           </p>
                         </div>
-                      </div>
-
-                      <div className="form-check d-flex justify-content-center mb-5">
-                        <input
-                          className="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="form2Example3c"
-                        />
-                        <label className="form-check-label" for="form2Example3">
-                          I agree all statements in{" "}
-                          <a href="#!">Terms of service</a>
-                        </label>
                       </div>
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

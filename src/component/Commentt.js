@@ -2,14 +2,11 @@ import React from "react";
 import Image from "react-bootstrap/Image";
 import moment from "moment";
 import { Card } from "react-bootstrap";
-import { captilaze } from "../utils/functions";
-import { useSelector } from "react-redux";
+
 
 const Commentt = ({ comment }) => {
+ 
   let time = moment(comment.createdAt).fromNow();
-  console.log(time)
-  const user = useSelector((state) => state.user);
-  const fullName = captilaze(`${user.user.firstName} ${user.user.lastName}`);
   return (
     <section>
       <div className="d-flex justify-content-start gap-3 ms-3 mt-2 ">
@@ -19,7 +16,7 @@ const Commentt = ({ comment }) => {
           style={{ width: "50px", height: "50px", borderRadius: "50%" }}
         />
         <div>
-          <h4>{fullName}</h4>
+          <h4>{`${comment.user.firstName} ${comment.user.lastName}`}</h4>
           <Card.Text>{comment.body}</Card.Text>
           <div className="d-flex justify-content-between">
             <div>

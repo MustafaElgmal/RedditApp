@@ -9,29 +9,24 @@ import * as Yup from "yup";
 import { ReactComponent as Like } from "../assets/like-svgrepo-com.svg";
 import { ReactComponent as Dislike } from "../assets/dislike-svgrepo-com.svg";
 import { ReactComponent as Comment } from "../assets/comment-bubble-with-three-squares-svgrepo-com.svg";
-import { addVote, getPosts, addComment, getPost } from "../utils/api";
-import { getAllPosts } from "../redux/actions/post.actions";
+import { getPosts, addComment, getPost } from "../utils/api";
 import CreateComment from "../component/CreateComment";
 import Commentt from "../component/Commentt";
 import { useContext } from "react";
 import { ThemeContext } from "../component/ThemsContext";
-import { getAllPostComments } from "../redux/actions/comment.actions";
-import Layout from "../component/Layout";
+import { vote } from "../utils/functions";
+
 const PostDetails = () => {
-  const [modalShow, setModalShow] = React.useState(false);
-  const { theme, cardTheme, buttonTheme } = useContext(ThemeContext);
-  const posts = useSelector((state) => state.post);
-  const comms = useSelector((state) => state.comments);
-  const user = useSelector((state) => state.user);
-  const { id } = useParams();
+  const [modalShow, setModalShow] = useState(false);
   const [post, setPost] = useState({});
+  const { theme, cardTheme, buttonTheme } = useContext(ThemeContext);
+  const user = useSelector((state) => state.user);
+  const comments=useSelector((state)=>state.commentsFilter)
+  const posts=useSelector((state)=>state.posts)
+  const { id } = useParams();
+
   const dispatch = useDispatch();
-  const vote = async (num) => {
-    const Vote = { userId: user.user.id, userVote: num };
-    await addVote(post.id, Vote);
-    const posts = await getPosts();
-    dispatch(getAllPosts(posts));
-  };
+
   const formik = useFormik({
     initialValues: {
       body: "",
@@ -42,21 +37,18 @@ const PostDetails = () => {
         .required("Body is required !"),
     }),
     onSubmit: async (values) => {
-      const comm = { ...values, userId: user.user.id };
-      await addComment(post.id, comm);
+      const comm = { ...values };
+      await addComment(post.id, comm, user.token);
       formik.resetForm();
-      const posts = await getPosts();
-      dispatch(getAllPosts(posts));
+      await getPosts(dispatch, user.token);
     },
   });
-  const funToGetPost = async () => {
-    const postFind = await getPost(+id);
-    setPost(postFind);
-    dispatch(getAllPostComments(postFind.comments));
+  const updatePost = async () => {
+    await getPost(+id, user.token, setPost,dispatch);
   };
 
   useEffect(() => {
-    funToGetPost();
+    updatePost();
   }, [posts]);
 
   if (!post) {
@@ -68,11 +60,9 @@ const PostDetails = () => {
     );
   }
 
-  const time = post.createdAt;
-  const date=moment(post.createdAt).format("MMMM D [at] LT")
+  const date = moment(post.createdAt).format("MMMM D [at] LT");
 
   return (
-
     <section className="mt-5 min-vh-100" style={theme}>
       <Container>
         <div className="div"></div>
@@ -94,10 +84,10 @@ const PostDetails = () => {
             <Card.Text>{post.body}</Card.Text>
             <div className="d-flex justify-content-between">
               <div>
-                <span onClick={(e) => vote(1)}>
+                <span onClick={(e) => vote(1, post.id, dispatch)}>
                   <Like className="search" /> {post.upVotesTotal}
                 </span>
-                <span onClick={(e) => vote(-1)}>
+                <span onClick={(e) => vote(1, post.id, dispatch)}>
                   <Dislike className="search" /> {post.downVotesTotal}
                 </span>
                 <span
@@ -124,7 +114,7 @@ const PostDetails = () => {
           <Card.Body>
             <div>
               <div>
-                {comms.map((comment) => (
+                {comments.map((comment) => (
                   <Commentt key={comment.id} comment={comment} />
                 ))}
               </div>

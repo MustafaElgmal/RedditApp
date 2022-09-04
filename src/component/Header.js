@@ -1,48 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar, Container, Image, Button } from "react-bootstrap";
 import { ReactComponent as Logo } from "../assets/Reddit-Logo.wine.svg";
 import CreatePost from "./CreatePost";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "../redux/actions/post.actions";
-import { getPosts } from "../utils/api";
 import { logout } from "../redux/actions/user.actions";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemsContext";
-import { getAllPostComments } from "../redux/actions/comment.actions";
+import { searchFilter } from "../utils/functions";
 
 const Header = () => {
+  const [modalShow, setModalShow] = useState(false);
   const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
+  const comments = useSelector((state) => state.comments);
   const [bool, setBool] = useState(false);
-  const displayToggle = () => {
-    setBool(!bool);
-  };
+  const dispatch = useDispatch();
   const location = useLocation();
   const { theme, buttonTheme, navTheme, themeToggle, currentTheme } =
     useContext(ThemeContext);
-
-  const dispatch = useDispatch();
-  const searchFilter = async (value = "") => {
-    const posts = await getPosts();
-    if (location.pathname === "/") {
-      let Filter = posts.filter((post) =>
-        post.title.toLowerCase().includes(value)
-      );
-      dispatch(getAllPosts(Filter));
-    } else {
-      const id = location.pathname.split("/")[2];
-      const postfind = posts.find((post) => post.id === +id);
-      const Filter = postfind.comments.filter((comm) =>
-        comm.body.toLowerCase().includes(value)
-      );
-      dispatch(getAllPostComments(Filter));
-    }
+  const displayToggle = () => {
+    setBool(!bool);
   };
-
-  useEffect(() => {
-    searchFilter();
-  });
-  const [modalShow, setModalShow] = React.useState(false);
   return (
     <Navbar
       className="fixed-top navbar-expand-lg mo"
@@ -65,7 +44,13 @@ const Header = () => {
                 placeholder="Search"
                 name="searchFilter"
                 onChange={(e) => {
-                  searchFilter(e.target.value);
+                  searchFilter(
+                    e.target.value,
+                    location,
+                    dispatch,
+                    posts,
+                    comments
+                  );
                   e.preventDefault();
                 }}
                 style={theme}

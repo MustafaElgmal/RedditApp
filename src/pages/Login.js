@@ -2,13 +2,11 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Image } from "react-bootstrap";
-import { login } from "../redux/actions/user.actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useContext } from "react";
 import { ThemeContext } from "../component/ThemsContext";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../utils/api";
-import Layout from "../component/Layout";
 
 const Login = () => {
   const { theme, buttonTheme, cardTheme } = useContext(ThemeContext);
@@ -25,18 +23,7 @@ const Login = () => {
       password: Yup.string().required("Please Enter your password"),
     }),
     onSubmit: async (values) => {
-      const res = await loginUser(values);
-      if (res.status !== 200) {
-        alert(res.response.data.error);
-      } else {
-        dispatch(login(res.data.user));
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ user: res.data.user, isLoggedIn: true })
-        );
-        formik.resetForm();
-        navigate("/");
-      }
+       await loginUser(values,dispatch,navigate);
       formik.resetForm();
     },
   });
@@ -70,7 +57,7 @@ const Login = () => {
                             onChange={formik.handleChange}
                             placeholder="Email"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.email && formik.touched.email
                               ? formik.errors.email
                               : null}
@@ -90,7 +77,7 @@ const Login = () => {
                             onChange={formik.handleChange}
                             placeholder="Password"
                           />
-                          <p className="text-muted">
+                          <p className="text-danger">
                             {formik.errors.password && formik.touched.password
                               ? formik.errors.password
                               : null}

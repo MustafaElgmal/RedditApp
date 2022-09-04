@@ -1,8 +1,8 @@
-export const login = (user) => {
+export const login = (token) => {
   return {
     type: "LOGIN",
     payload: {
-      user,
+      token,
       isLoggedIn: true,
     },
   };
@@ -12,7 +12,7 @@ export const logout = () => {
   return {
     type: "LOGOUT",
     payload: {
-      user:{},
+      token: "",
       isLoggedIn: false,
     },
   };
