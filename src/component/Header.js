@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <Navbar
       className="fixed-top navbar-expand-lg mo"
-      style={{ ...navTheme, height: "4.5rem" }}
+      style={{ ...navTheme, height: "60px" }}
     >
       <Container className="d-flex justify-content-between">
         <div>
