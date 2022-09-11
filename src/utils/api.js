@@ -5,7 +5,7 @@ import { getAllPosts } from "../redux/actions/posts.actions";
 import { getAllFilterPosts } from "../redux/actions/postsFilter.action";
 import { login } from "../redux/actions/user.actions";
 
-const Api = axios.create({ baseURL: "http://localhost:4000" });
+const Api = axios.create({ baseURL: "https://redditapp1234.herokuapp.com" });
 
 export const createUser = async (user, dispatch, navigate) => {
   try {
