@@ -26,7 +26,7 @@ const Post = ({ post }) => {
       <Card style={{ ...cardTheme }} className="ms-4 mt-3 posts">
         <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
           <Image
-            src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
+            src="https://reviews2024.s3.eu-west-3.amazonaws.com/16648832793627c92d172-e558-40ff-a5df-711887f24f1a.jpg"
             alt="Nocontent"
             style={{ width: "50px", height: "50px", borderRadius: "50%" }}
           />

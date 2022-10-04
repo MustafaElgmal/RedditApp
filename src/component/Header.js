@@ -63,7 +63,7 @@ const Header = () => {
           <div className="d-flex position-relative">
             <div onClick={displayToggle}>
               <Image
-                src="https://review2020.s3.amazonaws.com/57cd4468-6c75-4aa4-a374-d32847c43637.jpg"
+                src="https://reviews2024.s3.eu-west-3.amazonaws.com/16648832793627c92d172-e558-40ff-a5df-711887f24f1a.jpg"
                 alt="..."
                 roundedCircle
                 className="img"

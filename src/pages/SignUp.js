@@ -129,7 +129,7 @@ const SignUp = () => {
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <Link
-                          to="/login"
+                          to="/signin"
                           className={buttonTheme}
                           onClick={formik.handleSubmit}
                         >
