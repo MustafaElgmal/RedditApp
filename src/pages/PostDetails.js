@@ -18,7 +18,7 @@ import { vote } from "../utils/functions";
 
 const PostDetails = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState();
   const { theme, cardTheme, buttonTheme } = useContext(ThemeContext);
   const user = useSelector((state) => state.user);
   const comments=useSelector((state)=>state.commentsFilter)
@@ -69,7 +69,11 @@ const PostDetails = () => {
         <Card style={{ ...cardTheme }} className="postDe ">
           <div className="d-flex justify-content-start gap-3 ms-4 mt-4 ">
             <Image
-              src="https://review2020.s3.amazonaws.com/2f919e51-bf02-4f0d-a408-1607e79f2ec4.jpg"
+            src={`${
+              post.user.imgageUrl
+                ? post.user.imgageUrl
+                : "https://dzgcboayiitowsqexckt.supabase.co/storage/v1/object/sign/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvMzYwX0ZfMzQ2ODM5NjgzXzZuQVB6YmhwU2tJcGI4cG1Bd3Vma0M3YzVlRDd3WXdzLmpwZyIsImlhdCI6MTY2NjYzNjczNiwiZXhwIjoxOTgxOTk2NzM2fQ.uMhGnnaeH-d74B6orNInFqtTqRxfEQr8bddHeyaJyBo"
+            }`}
               alt="Nocontent"
               style={{ width: "50px", height: "50px", borderRadius: "50%" }}
             />
