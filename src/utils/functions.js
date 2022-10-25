@@ -18,11 +18,11 @@ export const vote = async (num, postId, dispatch,token) => {
 export const searchFilter = async (value,location,dispatch,posts,comments) => {
     
   if(location.pathname === "/"){
-    const filter=posts.filter((post)=>post.title.includes(value))
+    const filter=posts.filter((post)=>post.title.toLowerCase().includes(value.toLowerCase()))
     dispatch(getAllFilterPosts(filter))
     
   }else{
-    const filter=comments.filter((comment)=>comment.body.includes(value))
+    const filter=comments.filter((comment)=>comment.body.toLowerCase().includes(value.toLowerCase()))
     dispatch(getAllFilterComments(filter))
   }
  
